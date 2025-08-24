@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="735.0" prefWidth="822.0" style="-fx-background-color: #353535;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aplicativodesorteio.FXMLTelaDeSorteioController">
+
+    <children>
+
+        <!-- Título -->
+        <Label alignment="CENTER" prefHeight="36.0" text="Sorteio" textAlignment="CENTER" textFill="GAINSBORO" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0">
+            <font>
+                <Font name="Arial" size="30.0" />
+            </font>
+        </Label>
+
+        <!-- Campo Nome + Botão Adicionar -->
+        <TextField fx:id="inputNome" prefHeight="26.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="280.0" AnchorPane.topAnchor="80.0" />
+        <Button fx:id="btnAdicionarNaLista" prefHeight="26.0" text="Adicionar na lista (Enter)" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="80.0" />
+
+        <!-- Label Nome -->
+        <Label text="Nome:" textFill="GAINSBORO" AnchorPane.leftAnchor="54.0" AnchorPane.topAnchor="60.0" />
+
+        <!-- Importar CSV -->
+        <Button fx:id="btnImportarCSV" onAction="#importarCSV" prefHeight="26.0" prefWidth="150.0" text="Importar CSV" AnchorPane.leftAnchor="323.0" AnchorPane.topAnchor="120.0" />
+        <Label text="Ou Importe um arquivo .csv" textFill="GAINSBORO" AnchorPane.leftAnchor="57.0" AnchorPane.topAnchor="125.0" />
+
+        <!-- Lista -->
+        <Label text="Lista de Nomes" textFill="GAINSBORO" AnchorPane.leftAnchor="53.0" AnchorPane.topAnchor="160.0" />
+
+        <!-- Tabela -->
+        <TableView fx:id="table" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="180.0">
+            <columns>
+                <TableColumn fx:id="colunaNome" text="Nome" />
+                <TableColumn fx:id="colunaExcluir" text="Excluir" />
+            </columns>
+        </TableView>
+
+        <!-- Botão Sortear -->
+        <Button fx:id="btnSortear" onAction="#sortear" prefHeight="36.0" prefWidth="202.0" style="-fx-background-color: gold;" text="Sortear (Ctrl + S)" AnchorPane.bottomAnchor="60.0" AnchorPane.rightAnchor="50.0" />
+
+        <!-- Resultado -->
+        <Label fx:id="labelSorteado" alignment="CENTER" layoutX="51.2" prefHeight="56.0" prefWidth="720.0" text="Sorteado:" textAlignment="CENTER" textFill="#dcdcdc" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="51.0">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Label>
+        <Button fx:id="btnExcluirTodos" onAction="#excluirTodos" prefHeight="26.0" prefWidth="258.0" text="Excluir todos os nomes da planilha " AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="120.0" />
+
+    </children>
+</AnchorPane>
