@@ -23,9 +23,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
-import javax.swing.JOptionPane;
 
-public class FXMLTelaDeSorteioController {
+public class TelaDeSorteioController {
 
     @FXML
     private Button btnAdicionarNaLista;
@@ -69,14 +68,9 @@ public class FXMLTelaDeSorteioController {
         colunaNome.prefWidthProperty().bind(table.widthProperty()
                 .subtract(colunaExcluir.widthProperty()).subtract(2)); // ajuste de borda
 
-        // Faz a coluna Nome ocupar todo o resto do espaço
-        colunaNome.prefWidthProperty().bind(table.widthProperty()
-                .subtract(colunaExcluir.widthProperty()).subtract(2)); // 2px de borda
-
-        // Liga a tabela à lista
         table.setItems(listaPessoas);
 
-        inputNome.setOnAction(this::AdicionarNaLista);
+        inputNome.setOnAction(this::adicionarNaLista);
 
         inputNome.sceneProperty().addListener((obs, oldScene, newSene) -> {
             if (newSene != null) {
@@ -115,7 +109,7 @@ public class FXMLTelaDeSorteioController {
     }
 
     @FXML
-    void AdicionarNaLista(ActionEvent event) {
+    void adicionarNaLista(ActionEvent event) {
         String nome = inputNome.getText().trim();
         if (!nome.isEmpty()) {
             listaPessoas.add(new Pessoa(nome));
@@ -136,8 +130,8 @@ public class FXMLTelaDeSorteioController {
             return;
         }
         Random random = new Random();
-        int indiceNomeNaLita = random.nextInt(listaPessoas.size());
-        Pessoa vencedor = listaPessoas.get(indiceNomeNaLita);
+        int indiceSorteado = random.nextInt(listaPessoas.size());
+        Pessoa vencedor = listaPessoas.get(indiceSorteado);
 
         labelSorteado.setText("Sorteado: " + vencedor.getNome());
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -148,35 +142,23 @@ public class FXMLTelaDeSorteioController {
     }
 
     private void adicionarBotaoExcluir() {
-        Callback<TableColumn<Pessoa, Void>, TableCell<Pessoa, Void>> cellFactory
-                = new Callback<TableColumn<Pessoa, Void>, TableCell<Pessoa, Void>>() {
-            @Override
-            public TableCell<Pessoa, Void> call(final TableColumn<Pessoa, Void> param) {
-                return new TableCell<Pessoa, Void>() {
+        colunaExcluir.setCellFactory(param -> new TableCell<Pessoa, Void>() {
+            private final Button btnExcluir = new Button("Excluir");
 
-                    private final Button btn = new Button("Excluir");
-
-                    {
-                        btn.setOnAction((ActionEvent event) -> {
-                            Pessoa pessoa = getTableView().getItems().get(getIndex());
-                            listaPessoas.remove(pessoa);
-                        });
-                    }
-
-                    @Override
-                    public void updateItem(Void item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                        } else {
-                            setGraphic(btn);
-                        }
-                    }
-                };
+            {
+                btnExcluir.setOnAction(event -> {
+                    Pessoa pessoa = getTableView().getItems().get(getIndex());
+                    // A sua lista de pessoas, que pode ter outro nome no código refatorado
+                    getTableView().getItems().remove(pessoa);
+                });
             }
-        };
 
-        colunaExcluir.setCellFactory(cellFactory);
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : btnExcluir);
+            }
+        });
     }
 
 }

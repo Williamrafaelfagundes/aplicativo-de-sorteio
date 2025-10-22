@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="735.0" prefWidth="822.0" style="-fx-background-color: #353535;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aplicativodesorteio.FXMLTelaDeSorteioController">
+<AnchorPane id="AnchorPane" prefHeight="735.0" prefWidth="822.0" style="-fx-background-color: #353535;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aplicativodesorteio.TelaDeSorteioController">
 
     <children>
 
@@ -21,7 +21,7 @@
 
         <!-- Campo Nome + Botão Adicionar -->
         <TextField fx:id="inputNome" prefHeight="26.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="280.0" AnchorPane.topAnchor="80.0" />
-        <Button fx:id="btnAdicionarNaLista" prefHeight="26.0" text="Adicionar na lista (Enter)" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="80.0" />
+        <Button fx:id="btnAdicionarNaLista" onAction="#adicionarNaLista" prefHeight="26.0" text="Adicionar na lista (Enter)" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="80.0" />
 
         <!-- Label Nome -->
         <Label text="Nome:" textFill="GAINSBORO" AnchorPane.leftAnchor="54.0" AnchorPane.topAnchor="60.0" />

@@ -11,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- *
  * @author willi
  */
 public class AplicativoDeSorteio extends Application {
@@ -24,6 +23,7 @@ public class AplicativoDeSorteio extends Application {
         
         stage.setScene(scene);
         stage.show();
+        stage.setMaximized(true);
     }
 
     /**
