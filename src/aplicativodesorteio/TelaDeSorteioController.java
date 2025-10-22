@@ -111,6 +111,7 @@ public class TelaDeSorteioController {
     @FXML
     void adicionarNaLista(ActionEvent event) {
         String nome = inputNome.getText().trim();
+        System.out.println("Adicionar "+nome+" na lista");
         if (!nome.isEmpty()) {
             listaPessoas.add(new Pessoa(nome));
             inputNome.clear();
